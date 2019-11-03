@@ -16,3 +16,15 @@ curl -d @order.json -H "content-Type: application/json" "http://localhost:4004/r
 ```
 
 change ~/.zshrc add ```bindkey -v```
+
+## vim cheatsheet
+
+x : delete
+~ : upper/lower case
+ciw : delete the word and change to insert mode
+di' : delete the word inside of '
+q   : for recording macro
+    qs ciw '' Esc P q
+    to record the macro s; use @s to single quote a word.
+    qd di'hPl2x
+    to record the macro d; use @d to unquote a word.

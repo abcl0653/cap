@@ -5,7 +5,7 @@
   "repository": "<Add your repository here>",
   "license": "ISC",
   "dependencies": {
-    "@sap/cds": "^3.18.1",
+    "@sap/cds": "^3.18.3",
     "express": "^4.17.1"
   },
   "engines": {

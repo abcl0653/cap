@@ -1,6 +1,3 @@
-sap.ui.define(
-    ['sap/fe/AppComponent'],
-    appcomponent => appcomponent.extend('suppliers.Component', {
-        metadata: {manifest: 'json'}
-    })
-)
+sap.ui.define(["sap/fe/AppComponent"], ac => ac.extend("suppliers.Component", {
+    metadata:{ manifest:'json' }
+}))

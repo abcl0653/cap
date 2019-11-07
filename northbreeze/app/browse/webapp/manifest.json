@@ -1,0 +1,110 @@
+{
+  "_version": "1.8.0",
+  "sap.app": {
+    "id": "suppliers",
+    "type": "application",
+    "title": "Browse Suppliers",
+    "description": "Sample Application",
+    "i18n": "i18n/i18n.properties",
+    "dataSources": {
+      "CatalogService": {
+        "uri": "/Breeze/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "-sourceTemplate": {
+      "id": "ui5template.basicSAPUI5ApplicationProject",
+      "-id": "ui5template.smartTemplate",
+      "-version": "1.40.12"
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "libs": {
+        "sap.fe": {
+          
+        }
+      }
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      },
+      "": {
+        "dataSource": "CatalogService",
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "groupProperties": {
+            "default": {
+              "submit": "Auto"
+            }
+          }
+        }
+      }
+    },
+    "routing": {
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "SuppliersList",
+          "target": "SuppliersList"
+        },
+        {
+          "pattern": "Suppliers({key}):?query:",
+          "name": "SuppliersDetails",
+          "target": "SuppliersDetails"
+        }
+      ],
+      "targets": {
+        "SuppliersList": {
+          "type": "Component",
+          "id": "SuppliersList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "entitySet": "Suppliers",
+              "navigation": {
+                "Suppliers": {
+                  "detail": {
+                    "route": "SuppliersDetails"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "SuppliersDetails": {
+          "type": "Component",
+          "id": "SuppliersDetailsList",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "entitySet": "Suppliers"
+            }
+          }
+        }
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "fullWidth": false
+  },
+  "sap.fiori": {
+    "registrationIds": [
+      
+    ],
+    "archeType": "transactional"
+  }
+}

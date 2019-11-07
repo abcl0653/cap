@@ -6,6 +6,8 @@ Start the minikube via
 
 ```bash
 minikube start
+# using registry -- i didnt make it work
+--registry-mirror=https://registry.docker-cn.com
 ```
 
 ## Build a hello-node pod

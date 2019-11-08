@@ -1,11 +1,14 @@
 # Questions to SME Architect
 
+## General
 Do you have get started documentation for a better understanding of how to do custom development?
 
+## Skill Set
 What is the skill set needed to develop on the platform?  For example, nodejs experience/knowledge, UI5 knowledge, what else?
 
 What do you advice before a developer start to code on the platform? For example, understand X4 and BOF framework, undestand X4 UI technology, what else?
 
+## Development Process
 What is the typical custom development system landscape setup?
 We assume the followings:
 Developer's Laptop as development enviroment; SME platform cluster on Ali-cloud with POLARDB as a test and verification system.
@@ -18,6 +21,7 @@ What is the build and deployment step for custom development?
 Technically, what is the best way to release SME Custom Extension to customer? Is it a way to package custom development on SME, so that we can upload the packaged file to Service Market Place?
 So the customer can download the file, with some simple steps he/she can enable this extension in his account.
 
+## Platform feature
 For Partner/Custom Extension development on SME Platform, when developing a Custom Business Object, is it possible to define a BLOB type column?
 
 In the extension platform, Can we define a view by joining serveral Custom Business Object DB?
@@ -35,5 +39,3 @@ Is it possible to embedded external js library into SME UI? For example, use ech
 For Partner/Custom Extension development on SME Platform, is it possible to get the DB specific general information? For example, from a API call or select some DB system view, to get the DB type, DB version, etc.
 
 For Partner/Custom Extension development on SME Platform, is it possible to get the DB administrative information? For example, from an API call or select some DB system view to get how much DB memory are used, what is the used size of the DB storage?
-
-I believe most of the "features" are available in SME, but our concern is there might be some restriction on custom extension to prevent custom developer do some harm.

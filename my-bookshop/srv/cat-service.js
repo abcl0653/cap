@@ -1,23 +1,56 @@
-module.exports = (srv) => {
+const { BusinessPartnerAddress } = require('@sap/cloud-sdk-vdm-business-partner-service')
+const { FilterList } = require('@sap/cloud-sdk-core')
+const destination = {
+    url: 'http://localhost:3000/v2'
+}
 
-    const {Books} = cds.entities ('my.bookshop')
-  
-    // Reduce stock of ordered books
-    srv.before ('CREATE', 'Orders', async (req) => {
-      const order = req.data
-      if (!order.amount || order.amount <= 0)  return req.error (400, 'Order at least 1 book')
-      const tx = cds.transaction(req)
-      const affectedRows = await tx.run (
-        UPDATE (Books)
-          .set   ({ stock: {'-=': order.amount}})
-          .where ({ stock: {'>=': order.amount},/*and*/ ID: order.book_ID})
-      )
-      if (affectedRows === 0)  req.error (409, "Sold out, sorry")
-    })
-  
-    // Add some discount for overstocked books
-    srv.after ('READ', 'Books', each => {
-      if (each.stock > 111)  each.title += ' -- 11% discount!'
-    })
-  
-  }
+const createFilter = xs => {
+  const orFilters = xs.map( x => new FilterList([
+    BusinessPartnerAddress.BUSINESS_PARTNER.equals(x.businessPartner),
+    BusinessPartnerAddress.ADDRESS_ID.equals(x.addressID)
+  ]))
+  return new FilterList(undefined, orFilters)
+}
+
+function SELECT (columns) {
+  return { from(a){
+      const b = {}
+      for (let p in a) if (p in columns) b[p] = a[p]
+      return b
+  }}
+}
+
+module.exports = srv => {
+
+	srv.before('READ', 'Orders', async (req) => {
+
+		const { SELECT } = req.query
+		SELECT.columns = SELECT.columns.filter(c => !(c.expand && c.ref[0] === 'address'))
+
+	})
+
+	srv.after('READ', 'Orders', async (results, req) => {
+
+		const { Addresses } = srv.entities
+
+		const $expand = req._.odataReq.getQueryOptions() && req._.odataReq.getQueryOptions().$expand || ''
+		const result = results[0] || {}
+
+		const entityRE = new RegExp(/([a-z]+)(?=(\(|$))/g)
+
+		if ($expand && $expand.match(entityRE).includes('address') && 'businessPartner' in result && 'addressID' in result) {
+
+			const addresses = await BusinessPartnerAddress
+				.requestBuilder()
+				.getAll()
+				.filter(createFilter(results))
+				.execute(destination)
+
+			results.forEach(order => order.address = SELECT (Addresses.elements) .from (addresses.find(
+				address => order.businessPartner === address.businessPartner && order.addressID === address.addressId
+			)))
+
+		}
+
+	})
+}

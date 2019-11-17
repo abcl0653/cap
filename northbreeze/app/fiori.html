@@ -7,10 +7,17 @@
         window['sap-ushell-config'] = {
             applications: {
                 'browse-suppliers': {
-                    title: 'Browse Suppliers',
+                    title: 'Suppliers',
                     additionalInformation: 'SAPUI5.Component=suppliers',
                     applicationType: 'URL',
-                    url: '/browse/webapp',
+                    url: '/browse/webapp/suppliers',
+                    navigationMode:'embedded'
+                },
+                'browse-products': {
+                    title: 'Products',
+                    additionalInformation: 'SAPUI5.Component=products',
+                    applicationType: 'URL',
+                    url: '/browse/webapp/products',
                     navigationMode:'embedded'
                 }
             }

@@ -4,21 +4,16 @@
     "id": "suppliers",
     "type": "application",
     "title": "Browse Suppliers",
-    "description": "Sample Application",
+    "description": "Sample Application - Suppliers",
     "i18n": "i18n/i18n.properties",
     "dataSources": {
-      "CatalogService": {
+      "Breezy": {
         "uri": "/Breeze/",
         "type": "OData",
         "settings": {
           "odataVersion": "4.0"
         }
       }
-    },
-    "-sourceTemplate": {
-      "id": "ui5template.basicSAPUI5ApplicationProject",
-      "-id": "ui5template.smartTemplate",
-      "-version": "1.40.12"
     }
   },
   "sap.ui5": {
@@ -35,7 +30,7 @@
         "uri": "i18n/i18n.properties"
       },
       "": {
-        "dataSource": "CatalogService",
+        "dataSource": "Breezy",
         "settings": {
           "synchronizationMode": "None",
           "operationMode": "Server",
@@ -96,15 +91,5 @@
       "compact": true,
       "cozy": true
     }
-  },
-  "sap.ui": {
-    "technology": "UI5",
-    "fullWidth": false
-  },
-  "sap.fiori": {
-    "registrationIds": [
-      
-    ],
-    "archeType": "transactional"
   }
 }

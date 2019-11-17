@@ -1,0 +1,95 @@
+{
+  "_version": "1.8.0",
+  "sap.app": {
+    "id": "products",
+    "type": "application",
+    "title": "Browse Products",
+    "description": "Sample Application - Products",
+    "i18n": "i18n/i18n.properties",
+    "dataSources": {
+      "Breezy": {
+        "uri": "/Breeze/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "libs": {
+        "sap.fe": {
+          
+        }
+      }
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      },
+      "": {
+        "dataSource": "Breezy",
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "groupProperties": {
+            "default": {
+              "submit": "Auto"
+            }
+          }
+        }
+      }
+    },
+    "routing": {
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "ProductsList",
+          "target": "ProductsList"
+        },
+        {
+          "pattern": "Products({key}):?query:",
+          "name": "ProductsDetails",
+          "target": "ProductsDetails"
+        }
+      ],
+      "targets": {
+        "ProductsList": {
+          "type": "Component",
+          "id": "ProductsList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "entitySet": "Products",
+              "navigation": {
+                "Products": {
+                  "detail": {
+                    "route": "ProductsDetails"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ProductsDetails": {
+          "type": "Component",
+          "id": "ProductsDetailsList",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "entitySet": "Products"
+            }
+          }
+        }
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    }
+  }
+}

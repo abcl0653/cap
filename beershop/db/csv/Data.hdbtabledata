@@ -1,0 +1,20 @@
+{
+    "format_version":1,
+    "imports":[
+        {
+            "target_table": "MY_BEERSHOP_BEER",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "my.beershop-Beer.csv",
+                "has_header": true
+            },
+            "import_settings": {
+                "import_columns": [
+                    "ID",
+                    "SORT",
+                    "BREWERY"
+                ]
+            }
+        }
+    ]
+}

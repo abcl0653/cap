@@ -27,3 +27,5 @@ resources:
     type: com.sap.xs.hdi-container
     properties:
       hdi-container-name: ${service-name}
+    parameters:
+      service: hanatrial

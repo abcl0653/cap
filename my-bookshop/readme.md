@@ -17,12 +17,14 @@ The following sections are a quick walkthrough of essential tasks:
 
 <!-- TOC depthFrom:2 depthTo:2 -->
 
-- [Define your first Service and Run it](#define-your-first-service-and-run-it)
-- [Add Data Models](#add-data-models)
-- [Add Databases](#add-databases)
-- [Add Initial Data](#add-initial-data)
-- [Add Custom Logic](#add-custom-logic)
-- [More...](#more)
+- [Getting Started](#getting-started)
+  - [Define your first Service and Run it](#define-your-first-service-and-run-it)
+  - [Add Data Models](#add-data-models)
+  - [Add Databases](#add-databases)
+  - [Add Initial Data](#add-initial-data)
+  - [Add Custom Logic](#add-custom-logic)
+  - [More...](#more)
+  - [CV Matching](#cv-matching)
 
 <!-- /TOC -->
 
@@ -204,3 +206,33 @@ module.exports = (srv) => {
 ## More...
 
 Find more in the [help.sap.com](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/00823f91779d4d42aa29a498e0535cdf.html)
+
+## CV Matching
+
+I noted down my understanding of what should be done.
+
+PoC Features:
+ Development of an extension to Success Factors Recruiting Module. In this extensions will be created screens with similar capabilities as the job requisitions listings and also, the details of each job requisition. In the details of the job requisition the recruiter will be able to view all candidates that have applied to this position raked by the score calculated by the Resume Matching.
+
+The Resume Matching is a service that calculates the similarity between on Job Requisition description and a Job Applicant resume. Also, the recruiter will be able to give its feedback to indicate how the rating accuracy of the automate matching did performed.
+
+Work items: (non-datascience) 
+
+SF in-app extension (create new fields, etc) -5 PDs
+CVR application front end and backend enhancement and new enviroment adjustment(error handling and Queue(*))  -50 PDs
+Deployment to customer CF - 10 PDs
+adjust ML change into code base if necessary - 5PDs
+(*) @Guanqing, what is your opinion about queues? is it possible to use native alibaba RabbitMQ in this project? or can we use SCP Enterprise messaging? 
+
+Work items:(maybe datascience)
+word2vect retrain (20~40, according to Gustavo)
+rework the skill tree .txt file (probably 20~40)
+
+Assumptions:
+The application only cover english jd and cv. Chinese language is out-of-scope.
+No new features is required
+
+Questions to customers:
+Can we get english history data of JDs and CVs from customer?
+what is the number of JDs and CVs for the last year?
+what is the predicted number of JDs and CVs next year?

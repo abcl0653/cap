@@ -1,0 +1,5 @@
+        "@sap/hana-client": "file:hana-client-2.4.162.tgz",
+        "@sap/hdi": "file:hdi-2.2.4.tgz",
+        "@sap/hdi-deploy": "file:hdi-deploy-3.11.5.tgz",
+        "@sap/xsenv": "file:xsenv-2.2.0.tgz",
+        "node-pre-gyp": "file:node-pre-gyp-0.14.0.tgz",

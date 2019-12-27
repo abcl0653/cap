@@ -1,0 +1,13 @@
+<mvc:View controllerName = "demo.beershop.controller.MainView" displayBlock="true" xmlns="sap.m">
+    <App id="idAppControl">
+        <pages>
+            <Page title="Beershop">
+                <content>
+                    <List items="{/Beer}">
+                        <StandardListItem title="{BREWERY}" description="{SORT}" />
+                    </List>
+                </content>
+            </Page>
+        </Pages>
+    </App>
+</mvc:View>

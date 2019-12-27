@@ -21,6 +21,12 @@
     "db"
   ],
   "cds": {
+    "i18n": {
+      "folders": [
+        "languages"
+      ],
+      "default_language": "en"
+    },
     "odata": {
       "version": "v4"
     },

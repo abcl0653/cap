@@ -39,3 +39,5 @@ Is it possible to embedded external js library into SME UI? For example, use ech
 For Partner/Custom Extension development on SME Platform, is it possible to get the DB specific general information? For example, from a API call or select some DB system view, to get the DB type, DB version, etc.
 
 For Partner/Custom Extension development on SME Platform, is it possible to get the DB administrative information? For example, from an API call or select some DB system view to get how much DB memory are used, what is the used size of the DB storage?
+
+Is it possible to develop a PDF template and use it for Custom Business Object instance printing/export?

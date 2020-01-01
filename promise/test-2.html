@@ -1,0 +1,33 @@
+<html>
+    <head>
+
+        <title>Custom Promise</title>
+    </head>
+    <body>
+        <script src='./lib/Promise.js'></script>
+        <script>
+            const p = new Promise((resolve, reject)=>{
+                setTimeout(() => reject(1),100)
+            }).then(
+                value => {
+                    console.log('onResolved1()' , value)
+                    return 3
+                },
+                reason => {
+                    console.log('onRejected1()', reason)
+                    return new Promise((resolve, reject) => resolve(5))
+                }
+            ).then(
+                value => {
+                    console.log('onResolved2()' , value)
+                    return new Promise(()=>{}) // break the promise chain
+                }
+                // reason => console.log('onRejected2()', reason)
+            ).catch(
+                reason => console.log('catch', reason)
+            ).then(
+                value => console.log('resolved 4', value)
+            )
+        </script>
+    </body>
+</html>

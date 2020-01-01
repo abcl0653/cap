@@ -1,12 +1,12 @@
 /* IIFE */
 (function (window) {
 
+    const PENDING = 'pending'
+    const RESOLVED = 'resolved'
+    const REJECTED = 'rejected'
+
     /* Constructor  */
     function Promise(executor){
-
-        const PENDING = 'pending'
-        const RESOLVED = 'resolved'
-        const REJECTED = 'rejected'
 
         const self = this
         this.status = PENDING //pending -> resolved/rejected
@@ -61,7 +61,13 @@
     return a promise
     */ 
     Promise.prototype.then = function(onResolved, onRejected) {
+
+        onResolved = typeof onResolved==='function' ? onResolved : value => value
+        // Specify the fail callback, it is exception througth key
+        onRejected = typeof onRejected==='function' ? onRejected : reason => {throw reason} 
         const self = this
+
+        // Return a new promise
         return new Promise((resolve, reject) => {
             function handle(callback) {
                 try{
@@ -89,7 +95,7 @@
                     }
                 })
             } else if (self.status === RESOLVED) {
-                setTimeout(() => {
+                setTimeout(() => { // Async
                     /*
                     1.If onResolved raise exception, call reject with error
                     2.If onResolved return a non-Promise object, call resolve with value returned onResolved
@@ -97,7 +103,7 @@
                     */
                    handle(onResolved)
                 })
-            } else {
+            } else { // status = rejected, asyn call onRejected and change the status of the promise
                 setTimeout(() => {
                     /*
                     1.If onRejected raise exception, call reject with error
@@ -120,6 +126,7 @@
     return a promise
     */
     Promise.prototype.catch = function(onRejected) {
+        return this.then(undefined,onRejected)
 
     }
 
@@ -127,14 +134,27 @@
     Return a success promise with value
     */
     Promise.resolve = function(value) {
-
+        return new Promise((resolve, reject)=>{
+            /*
+            https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve
+            If the value is a promise, return a promise base on it
+            If not, return a promise with the value
+            */
+            if (value instanceof Promise) {
+                value.then(resolve, reject)
+            } else {
+                resolve(value)
+            }
+        })
     }
 
     /*
     Return a fail promise with reason
     */
     Promise.reject = function(reason) {
-
+        return new Promise((resolve, reject) => {
+            reject(reason)
+        })
     }
 
     /*

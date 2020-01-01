@@ -1,0 +1,30 @@
+<html>
+    <head>
+
+        <title>Custom Promise</title>
+    </head>
+    <body>
+        <script src='./lib/Promise.js'></script>
+        <script>
+            const p = Promise.resolve(1)
+            p.then(value=>console.log('onresolved', value))
+
+            const p1_1 = Promise.resolve(Promise.resolve(2))
+            p1_1.then(value=>console.log('onresolved p1.1', value))
+
+            const p1_2 = Promise.resolve(Promise.reject(3))
+            p1_2.catch(reason=>console.log('onRejected p1.2', reason))
+
+            // const p2 = Promise.reject(2)
+            // p2.then(
+            //     value=> {console.log('not happening')}, 
+            //     reason=>{console.log('onrejected')}
+            // )
+            const pAll = Promise.all([p,p1_1])
+            pAll.then(
+                values => console.log('pAll onResolved():', values),
+                reason => console.log('pAll onRejected():', reason)
+            )
+        </script>
+    </body>
+</html>

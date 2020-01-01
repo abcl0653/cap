@@ -148,6 +148,18 @@
         })
     }
 
+    Promise.resolveDelay = function(value, time) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (value instanceof Promise) {
+                    value.then(resolve, reject)
+                } else {
+                    resolve(value)
+                }
+            }, time)
+        })
+    }
+
     /*
     Return a fail promise with reason
     */
@@ -157,12 +169,42 @@
         })
     }
 
+    Promise.rejectDelay = function(reason, time) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                reject(reason)
+            }, time)
+        })
+    }
+
     /*
     Return a promise, if all promises is success, return success
     else return a fail promise
     */
     Promise.all = function(promises) {
+        const values = new Array(promises.length) //to be stored all the success values
+        let resolvedCount = 0 // counter for resolve
+        return new Promise((resolve, reject) => {
+            // loop all the promises
+            promises.forEach((p, index) => {
+                Promise.resolve(p).then(
+                    value => {
+                        resolvedCount++ // add 1 to counter
+                        // values.push(value)
+                        values[index] = value
 
+                        // if all success
+                        if (resolvedCount===promises.length) {
+                            resolve(values)
+                        }
+                    },
+                    reason => {
+                        // fail when a promise fail
+                        reject(reason)
+                    }
+                )
+            })
+        })
     }
 
     /**
@@ -170,7 +212,18 @@
      * else return a fail promise
      */
     Promise.race = function(promises) {
-
+        return new Promise((resolve, reject) => {
+            promises.forEach((p,index) => {
+                Promise.resolve(p).then(
+                    value => {
+                        resolve(value)
+                    },
+                    reason => {
+                        reject(reason)
+                    }
+                )
+            })
+        })
     }
 
     //expose function: Promise

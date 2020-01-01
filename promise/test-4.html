@@ -21,12 +21,8 @@
             //     reason=>{console.log('onrejected')}
             // )
 
-            p2.then(
-                value => console.log('onResolved', value),
-                reason => console.log('onRejected', reason)
-            )
-            const pAll = Promise.all([1,2,p])
-            pAll.then(
+            const pRace = Promise.race([p2,p,p1_1, p1_2,p2])
+            pRace.then(
                 values => console.log('pAll onResolved():', values),
                 reason => console.log('pAll onRejected():', reason)
             )

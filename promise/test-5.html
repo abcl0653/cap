@@ -1,0 +1,31 @@
+<html>
+    <head>
+
+        <title>Custom Promise</title>
+    </head>
+    <body>
+        <!-- <script src='./lib/Promise_class.js'></script> -->
+        <script>
+            setTimeout(() => { // put into macro callback queue
+                console.log('set timeout callback1()')
+                Promise.resolve(3).then(
+                    value => console.log('onResolved()',value)
+                )
+            },0)
+
+            setTimeout(() => { // put into macro callback queue
+                console.log('set timeout callback2()')
+            },0)
+            Promise.resolve(1).then( // put into micro callback queue
+                value => {
+                    console.log('onResolved()', value)
+                }
+            )
+            Promise.resolve(2).then( // put into micro callback queue
+                value => {
+                    console.log('onResolved()', value)
+                }
+            )
+        </script>
+    </body>
+</html>

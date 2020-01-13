@@ -13,15 +13,6 @@ sap.ui.define([
             let sRecipient = this.getView().getModel().getProperty("/recipient/name")
             let sMsg = oBundle.getText("helloMsg", [sRecipient,'!!'])
             MessageToast.show(sMsg) 
-        },
-        // onInit: () => console.log(this)
-        onInit: function() {this.getView().setModel(new JSONModel(
-                    {recipient:{name:"World"}}
-                )
-            )
-            this.getView().setModel( new ResourceModel({
-                bundleName:"sap.ui.demo.walkthrough.i18n.i18n"
-            }), "i18n")
         }
     })
 )

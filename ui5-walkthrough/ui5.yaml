@@ -1,8 +1,4 @@
 specVersion: '1.0'
 metadata:
-<<<<<<< HEAD
   name: myapp
-=======
-  name: ui5 Test package
->>>>>>> 8323a04c0e57edf19e9f8ab914e1a3222f8c3157
 type: application

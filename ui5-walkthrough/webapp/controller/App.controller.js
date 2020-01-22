@@ -3,16 +3,10 @@ sap.ui.define([
     "sap/m/MessageToast",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/resource/ResourceModel"
-],(Controller, MessageToast, JSONModel, ResourceModel) => 
+],(Controller) => 
     Controller.extend("sap.ui.demo.walkthrough.controller.App", {
         // Controller extension definition Map
         // onShowHello: function() {alert("Hello UI5")}
         // onShowHello: () => MessageToast.show("Hello, Message"),
-        onShowHello: function() {
-            let oBundle = this.getView().getModel("i18n").getResourceBundle()
-            let sRecipient = this.getView().getModel().getProperty("/recipient/name")
-            let sMsg = oBundle.getText("helloMsg", [sRecipient,'!!'])
-            MessageToast.show(sMsg) 
-        }
     })
 )

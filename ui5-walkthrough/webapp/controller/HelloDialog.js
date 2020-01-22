@@ -13,17 +13,20 @@ sap.ui.define([
 
         open: function() {
             let oView = this._oView
-            if (!this.byId("helloDialog")) {
+            if (!oView.byId("helloDialog")) {
+                let oFragmentController = {
+                    onCloseDialog: () => oView.byId("helloDialog").close()
+                }
                 Fragment.load({
                     id: oView.getId(),
                     name:"sap.ui.demo.walkthrough.view.HelloDialog",
-                    controller: this
+                    controller: oFragmentController
                 }).then(oDialog => {
                     oView.addDependent(oDialog)
                     oDialog.open()
                 })
             } else {
-                this.byId("helloDialog").open()
+                oView.byId("helloDialog").open()
             }
         }
     })

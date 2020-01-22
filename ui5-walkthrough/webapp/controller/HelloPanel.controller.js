@@ -3,7 +3,7 @@ sap.ui.define([
     "sap/m/MessageToast",
     "sap/ui/core/Fragment"
 ],(Controller, MessageToast, Fragment) => 
-    Controller.extend("sap.ui.demo.walkthrough.controller.App", {
+    Controller.extend("sap.ui.demo.walkthrough.controller.HelloPanel", {
         // Controller extension definition Map
         // onShowHello: function() {alert("Hello UI5")}
         // onShowHello: () => MessageToast.show("Hello, Message"),
@@ -15,7 +15,7 @@ sap.ui.define([
         },
 
         onOpenDialog: function() {
-            this.getOwnerComponent().open()
+            this.getOwnerComponent().openHelloDialog()
         },
 
         onCloseDialog: function() {

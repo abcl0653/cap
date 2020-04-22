@@ -101,7 +101,8 @@ At this point, when we try to access this server remotely, accessing namenode is
 
 ```
 # Should change to the following instead 127.0.1.1
-<actual IP> hdsandbox.xxxx.cloud hdsandbox
+<actual IP> hdsandbox.xxxx.xxxxx.sap.cloud hdsandbox
+127.0.0.1 hdsandbox.openstack.eu-de-1.cloud.sap hdsandbox
 ```
 <https://askubuntu.com/questions/754213/what-is-difference-between-localhost-address-127-0-0-1-and-127-0-1-1>
 

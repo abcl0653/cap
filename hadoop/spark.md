@@ -47,3 +47,6 @@ Check spark job via <http://10.47.228.185:4040/jobs/>
 ```scala
 sc.textFile("wcinput").flatMap(_.split(" ")).map((_,1)).reduceByKey(_+_).collect
 ```
+
+
+

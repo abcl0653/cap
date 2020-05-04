@@ -106,6 +106,12 @@ At this point, when we try to access this server remotely, accessing namenode is
 ```
 <https://askubuntu.com/questions/754213/what-is-difference-between-localhost-address-127-0-0-1-and-127-0-1-1>
 
+## WebHDFS
+
+
+<http://10.47.228.185:9870/webhdfs/v1/user/i039497/NOTICE.txt?op=OPEN>
+
+
 ## Trouble shooting
 
 Check if the port is occupied:
@@ -115,3 +121,5 @@ lsof -i
 # if the port is in used by other user
 sudo lsof -i
 ```
+
+

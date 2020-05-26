@@ -16,8 +16,11 @@ conf/spark-env.sh
 
 set YARN_CONF_DIR in conf/spark-env.sh
 
+if you are using hadoop free spark
+<https://spark.apache.org/docs/latest/hadoop-provided.html>
 
-### Hello World Test 
+### Hello World Test
+
 ```bash
 bin/spark-submit \
  --class org.apache.spark.examples.SparkPi \
@@ -33,6 +36,7 @@ bin/spark-submit \
 ./examples/jars/spark-examples_2.11-2.4.5.jar \
 100
 ```
+
 Check yarn job list via <http://10.47.228.185:8088/cluster>
 
 ### Spark shell
